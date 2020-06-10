@@ -1,0 +1,269 @@
+package jenkins;
+
+import java.util.UUID;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
+
+public class Products extends BaseforJenkins {
+
+	public static By ProductsScreenButton = By.id("MainMenuProductsLink");
+	public static By createProductButton = By.xpath("//button[contains(.,'Create Product')]");
+	public static By sku = By.name("sku");
+	public static By name = By.name("name");
+	public static By packType = By.id("packTypeName");
+	public static By packTypeEmptyArea = By.xpath(
+			"/html//platform-root/kendo-popup[@class='k-animation-container k-animation-container-shown']//input");
+	public static By createPackType = By.id("btnCreateProductPackTypeName");
+	public static By weightField = By.id("packTypeWeight");
+	public static By initialQuantity = By.id("quantity");
+	public static By addAnImage = By.id("addNewImageCollapseButton");
+	public static By productImage = By.id("addNewImage");
+	public static By productImageAddButton = By.id("addNewImageInsertButton");
+	public static By descriptionArea = By.id("descriptionCollapseButton");
+	public static By EditdesriptArea = By.name("description");
+	public static By addSalesPriceButton = By.id("salesPriceCollapseButton");
+	public static By salesPriceArea = By.id("salesPrice");
+	public static By addPurchaseButton = By.id("purchasePriceCollapseButton");
+	public static By purchasePriceArea = By.id("purchasePrice");
+	public static By addTaxRateButton = By.id("taxRateCollapseButton");
+	public static By taxRateArea = By.id("taxRate");
+	public static By addUPCButton = By.id("upcCollapseButton");
+	public static By uPCArea = By.id("upc");
+	public static By AddProductType = By.id("productTypeNameCollapseButton");
+	public static By ProductTypeArea = By.id("productTypeName");
+	public static By ProductTypeArea2 = By.cssSelector(".k-animation-container .k-list-filter .k-textbox");
+	public static By clickProductType = By.id("btnCreateProductTypeName");
+	public static By productSaveButton = By.xpath("//button[contains(.,'SAVE')]");
+	public static By deleteProductButton = By.xpath("//button[contains(.,'Delete')]");
+	public static By sureDeleteYes = By.xpath("//button[contains(.,'YES')]");
+	public static By editProductButton = By.xpath("//button[contains(.,'Edit')]");
+
+	@Test(priority = 1, alwaysRun = true)
+	public void createProductNoQuantity() throws InterruptedException {
+
+		WebDriverWait wait = new WebDriverWait(driver, 40);
+
+		wait.until(ExpectedConditions.elementToBeClickable((ProductsScreenButton)));
+		driver.findElement(Products.ProductsScreenButton).click();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((createProductButton)));
+		driver.findElement(Products.createProductButton).click();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((sku)));
+		String uuid = UUID.randomUUID().toString();
+		driver.findElement(sku).sendKeys(uuid);
+		driver.findElement(name).sendKeys(uuid);
+		driver.findElement(packType).click();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((packTypeEmptyArea)));
+		driver.findElement(packTypeEmptyArea).sendKeys(uuid);
+		Thread.sleep(4000);
+		wait.until(ExpectedConditions.elementToBeClickable((createPackType)));
+		driver.findElement(createPackType).click();
+		Thread.sleep(2000);
+		driver.findElement(weightField).findElement(By.className("k-input")).sendKeys("10");
+		Thread.sleep(2000);
+		driver.findElement(initialQuantity).findElement(By.className("k-input")).sendKeys("");
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((addAnImage)));
+		driver.findElement(addAnImage).click();
+		Thread.sleep(1000);
+		wait.until(ExpectedConditions.elementToBeClickable(productImage));
+		driver.findElement(productImage)
+				.sendKeys("https://d163axztg8am2h.cloudfront.net/static/img/25/67/ca511d852e4dc7a82ef7011da33d.jpg");
+		driver.findElement(productImageAddButton).click();
+		Thread.sleep(1000);
+		wait.until(ExpectedConditions.elementToBeClickable((productImage)));
+		driver.findElement(productImage).sendKeys(
+				"https://assets.bigcartel.com/product_images/244905239/SS+Nylon+bags-20.jpg?auto=format&fit=max&w=1200");
+		driver.findElement(productImageAddButton).click();
+		Thread.sleep(1000);
+		wait.until(ExpectedConditions.elementToBeClickable((productImage)));
+		driver.findElement(productImage)
+				.sendKeys("https://assets.bigcartel.com/theme_images/49706666/AW19-09a.jpg?auto=format&fit=max&w=1800");
+		driver.findElement(productImageAddButton).click();
+		Thread.sleep(1000);
+		driver.findElement(descriptionArea).click();
+		Thread.sleep(1000);
+		driver.findElement(EditdesriptArea).sendKeys("This is a description of the test case.");
+		Thread.sleep(1000);
+		wait.until(ExpectedConditions.elementToBeClickable((addSalesPriceButton)));
+		driver.findElement(addSalesPriceButton).click();
+		Thread.sleep(1000);
+		driver.findElement(salesPriceArea).findElement(By.className("k-input")).sendKeys("10");
+		Thread.sleep(1000);
+		wait.until(ExpectedConditions.elementToBeClickable((addPurchaseButton)));
+		driver.findElement(addPurchaseButton).click();
+		Thread.sleep(1000);
+		driver.findElement(purchasePriceArea).findElement(By.className("k-input")).sendKeys("10");
+		Thread.sleep(1000);
+		wait.until(ExpectedConditions.elementToBeClickable((addTaxRateButton)));
+		driver.findElement(addTaxRateButton).click();
+		Thread.sleep(1000);
+		driver.findElement(taxRateArea).findElement(By.className("k-input")).sendKeys("10");
+		Thread.sleep(1000);
+		wait.until(ExpectedConditions.elementToBeClickable((addUPCButton)));
+		driver.findElement(addUPCButton).click();
+		Thread.sleep(1000);
+		driver.findElement(uPCArea).sendKeys("UPC-1");
+		wait.until(ExpectedConditions.elementToBeClickable((AddProductType)));
+		driver.findElement(AddProductType).click();
+		Thread.sleep(1000);
+		driver.findElement(ProductTypeArea).click();
+		Thread.sleep(1000);
+		driver.findElement(ProductTypeArea2).sendKeys(uuid);
+		Thread.sleep(1000);
+		wait.until(ExpectedConditions.elementToBeClickable((clickProductType)));
+		driver.findElement(clickProductType).click();
+		Thread.sleep(2000);
+		driver.findElement(productSaveButton).click();
+		Thread.sleep(6000);
+
+	}
+
+	@Test(priority = 2, alwaysRun = true)
+	public void deleteProduct() throws InterruptedException {
+
+		WebDriverWait wait = new WebDriverWait(driver, 40);
+		Actions builder = new Actions(driver);
+		WebElement element = driver.findElement(By.cssSelector("tr:nth-child(1) > td:nth-child(3)"));
+		builder.moveToElement(element).build().perform();
+		wait.until(ExpectedConditions.elementToBeClickable((deleteProductButton)));
+		driver.findElement(deleteProductButton).click();
+		wait.until(ExpectedConditions.elementToBeClickable((sureDeleteYes)));
+		driver.findElement(sureDeleteYes).click();
+		Thread.sleep(9000);
+	}
+
+	@Test(priority = 3, alwaysRun = true)
+	public void createProduct() throws InterruptedException {
+
+		WebDriverWait wait = new WebDriverWait(driver, 40);
+		wait.until(ExpectedConditions.elementToBeClickable((createProductButton)));
+		driver.findElement(Products.createProductButton).click();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((sku)));
+		String uuid = UUID.randomUUID().toString();
+		driver.findElement(sku).sendKeys(uuid);
+		driver.findElement(name).sendKeys(uuid);
+		driver.findElement(packType).click();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((packTypeEmptyArea)));
+		driver.findElement(packTypeEmptyArea).sendKeys(uuid);
+		Thread.sleep(4000);
+		wait.until(ExpectedConditions.elementToBeClickable((createPackType)));
+		driver.findElement(createPackType).click();
+		Thread.sleep(2000);
+		driver.findElement(weightField).findElement(By.className("k-input")).sendKeys("10");
+		Thread.sleep(2000);
+		driver.findElement(initialQuantity).findElement(By.className("k-input")).sendKeys("10");
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((addAnImage)));
+		driver.findElement(addAnImage).click();
+		Thread.sleep(1000);
+		wait.until(ExpectedConditions.elementToBeClickable(productImage));
+		driver.findElement(productImage)
+				.sendKeys("https://d163axztg8am2h.cloudfront.net/static/img/25/67/ca511d852e4dc7a82ef7011da33d.jpg");
+		driver.findElement(productImageAddButton).click();
+		Thread.sleep(1000);
+		wait.until(ExpectedConditions.elementToBeClickable((productImage)));
+		driver.findElement(productImage).sendKeys(
+				"https://assets.bigcartel.com/product_images/244905239/SS+Nylon+bags-20.jpg?auto=format&fit=max&w=1200");
+		driver.findElement(productImageAddButton).click();
+		Thread.sleep(1000);
+		wait.until(ExpectedConditions.elementToBeClickable((productImage)));
+		driver.findElement(productImage)
+				.sendKeys("https://assets.bigcartel.com/theme_images/49706666/AW19-09a.jpg?auto=format&fit=max&w=1800");
+		driver.findElement(productImageAddButton).click();
+		Thread.sleep(1000);
+		driver.findElement(descriptionArea).click();
+		Thread.sleep(1000);
+		driver.findElement(EditdesriptArea).sendKeys("This is a description of the test case.");
+		Thread.sleep(1000);
+		wait.until(ExpectedConditions.elementToBeClickable((addSalesPriceButton)));
+		driver.findElement(addSalesPriceButton).click();
+		Thread.sleep(1000);
+		driver.findElement(salesPriceArea).findElement(By.className("k-input")).sendKeys("10");
+		Thread.sleep(1000);
+		wait.until(ExpectedConditions.elementToBeClickable((addPurchaseButton)));
+		driver.findElement(addPurchaseButton).click();
+		Thread.sleep(1000);
+		driver.findElement(purchasePriceArea).findElement(By.className("k-input")).sendKeys("10");
+		Thread.sleep(1000);
+		wait.until(ExpectedConditions.elementToBeClickable((addTaxRateButton)));
+		driver.findElement(addTaxRateButton).click();
+		Thread.sleep(1000);
+		driver.findElement(taxRateArea).findElement(By.className("k-input")).sendKeys("10");
+		Thread.sleep(1000);
+		wait.until(ExpectedConditions.elementToBeClickable((addUPCButton)));
+		driver.findElement(addUPCButton).click();
+		Thread.sleep(1000);
+		driver.findElement(uPCArea).sendKeys("UPC-1");
+		wait.until(ExpectedConditions.elementToBeClickable((AddProductType)));
+		driver.findElement(AddProductType).click();
+		Thread.sleep(1000);
+		driver.findElement(ProductTypeArea).click();
+		Thread.sleep(1000);
+		driver.findElement(ProductTypeArea2).sendKeys(uuid);
+		Thread.sleep(1000);
+		wait.until(ExpectedConditions.elementToBeClickable((clickProductType)));
+		driver.findElement(clickProductType).click();
+		Thread.sleep(2000);
+		driver.findElement(productSaveButton).click();
+		Thread.sleep(6000);
+
+	}
+
+	@Test(priority = 4, alwaysRun = true)
+	public void editProduct() throws InterruptedException {
+
+		WebDriverWait wait = new WebDriverWait(driver, 40);
+		Actions builder = new Actions(driver);
+		WebElement element = driver.findElement(By.cssSelector("tr:nth-child(1) > td:nth-child(3)"));
+		builder.moveToElement(element).build().perform();
+		wait.until(ExpectedConditions.elementToBeClickable((editProductButton)));
+		driver.findElement(editProductButton).click();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((sku)));
+		String uuid = UUID.randomUUID().toString();
+		driver.findElement(sku).sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+		Thread.sleep(2000);
+		driver.findElement(sku).sendKeys(uuid);
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((name)));
+		driver.findElement(name).sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+		Thread.sleep(2000);
+		driver.findElement(name).sendKeys(uuid);
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((EditdesriptArea)));
+		driver.findElement(EditdesriptArea).sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+		driver.findElement(EditdesriptArea).sendKeys("This is a second description of the test case.");
+		Thread.sleep(1000);
+		wait.until(ExpectedConditions.elementToBeClickable((uPCArea)));
+		driver.findElement(EditdesriptArea).sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+		driver.findElement(uPCArea).sendKeys("UPC-2");
+		driver.findElement(productSaveButton).click();
+		Thread.sleep(6000);
+
+	}
+
+	@Test(priority = 5, alwaysRun = true)
+	public void deleteProduct2() throws InterruptedException {
+
+		WebDriverWait wait = new WebDriverWait(driver, 40);
+		Actions builder = new Actions(driver);
+		WebElement element = driver.findElement(By.cssSelector("tr:nth-child(1) > td:nth-child(3)"));
+		builder.moveToElement(element).build().perform();
+		wait.until(ExpectedConditions.elementToBeClickable((deleteProductButton)));
+		driver.findElement(deleteProductButton).click();
+		wait.until(ExpectedConditions.elementToBeClickable((sureDeleteYes)));
+		driver.findElement(sureDeleteYes).click();
+		Thread.sleep(9000);
+	}
+}
