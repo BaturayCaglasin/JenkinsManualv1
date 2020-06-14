@@ -1,0 +1,457 @@
+package jenkins;
+
+import java.util.Set;
+import java.util.UUID;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
+
+public class PurchaseOrder extends BaseforJenkins {
+	
+public static By PurchaseOrderScreenButton = By.id("MainMenuPurchaseOrderLink");
+public static By vendorList = By.xpath("//a[contains(.,'Vendor List')]");
+public static By createVendor = By.xpath("//button[contains(.,'Create Vendor')]");	
+public static By companyNickname = By.id("displayName");	
+public static By companyName = By.id("officialIdentity");	
+public static By addressName = By.id("addressName");
+public static By addressLine1 = By.id("addressLine1");
+public static By addressLine2 = By.id("addressLine2");
+public static By postalCode = By.id("postalCode");
+public static By city = By.id("city");	
+public static By saveVendor = By.xpath("//button[contains(.,'SAVE')]");	
+public static By createPurchaseOrderButton = By.xpath("//button[contains(.,'Create Purchase Order')]");	
+public static By createProductButton = By.xpath("//button[contains(.,'Create Product')]");
+public static By sku = By.name("sku");	
+public static By productName = By.name("name");	
+public static By packType = By.id("packTypeName");	
+public static By packTypeArea = By.xpath("/html//platform-root/kendo-popup[@class='k-animation-container k-animation-container-shown']//input");	
+public static By createPackType = By.id("btnCreateProductPackTypeName");	
+public static By initialQuantity = By.id("quantity");
+public static By addAnImage = By.id("addNewImageCollapseButton");	
+public static By productImage = By.id("addNewImage");
+public static By productImageAddButton = By.id("addNewImageInsertButton");	
+public static By descriptionArea = By.id("descriptionCollapseButton");
+public static By EditdesriptArea = By.name("description");	
+public static By addSalesPriceButton = By.id("salesPriceCollapseButton");
+public static By salesPriceArea = By.id("salesPrice");
+public static By addPurchaseButton = By.id("purchasePriceCollapseButton");
+public static By purchasePriceArea = By.id("purchasePrice");
+public static By addTaxRateButton = By.id("taxRateCollapseButton");
+public static By taxRateArea = By.id("taxRate");
+public static By addUPCButton = By.id("upcCollapseButton");
+public static By uPCArea = By.id("upc");
+public static By AddProductType = By.id("productTypeNameCollapseButton");
+public static By ProductTypeArea = By.id("productTypeName");
+public static By ProductTypeArea2 = By.cssSelector(".k-animation-container .k-list-filter .k-textbox");
+public static By productSaveButton = By.xpath("//button[contains(.,'SAVE')]");
+public static By clickAddVendorInformation = By.xpath("//button[contains(.,'Add Vendor Information')]");
+public static By addANewVendorButton = By.xpath("//button[contains(.,'Add New Vendor')]");
+public static By addOrderDetails = By.xpath("//button[contains(.,'Add Order Details')]");
+public static By poOrderCode = By.name("code");
+public static By orderTypeSection = By.xpath("//kendo-dropdownlist[@id='purchaseOrderTypeName']//span[@class='k-input']");
+public static By orderTypeArea = By.xpath("/html//platform-root/kendo-popup[@class='k-animation-container k-animation-container-shown']//input");
+public static By orderTypeAdd = By.xpath("//button[contains(.,'Create New Purchase Order Type')]");
+public static By confirmPurchaseOrder = By.xpath("//button[contains(.,'Confirm Purchase Order')]");
+public static By confirmandPlaceOrder = By.xpath("//button[contains(.,'Confirm and Place Order')]");
+public static By quantityElement = By.xpath("//div[@id='collapseOne']//platform-purchase-order-product-form-view//platform-grid/kendo-grid/div[@role='grid']//tbody/tr[@role='row']/td[4]//kendo-numerictextbox//input[@role='spinbutton']");
+public static By pricePerItemElement = By.xpath("//div[@id='collapseOne']//platform-purchase-order-product-form-view//platform-grid/kendo-grid/div[@role='grid']//tbody/tr[@role='row']/td[5]//kendo-numerictextbox//input[@role='spinbutton']");
+public static By showDetails2 = By.xpath("//div[@id='headingThree']/div/div[2]/button/span");
+public static By poCode = By.id("code");
+public static By saveApplyChanges = By.xpath("//button[contains(.,'Save and Apply Changes')]");
+public static By poEditBTN = By.xpath("//button[contains(.,'Edit')]");
+public static By poDeleteBTN = By.xpath("//button[contains(.,'Delete')]");
+public static By poCancelBTN = By.xpath("//button[contains(.,'Cancel Order')]");
+public static By poReceiptBTN = By.xpath("//button[contains(.,'Receive Order')]");
+
+
+
+
+	@Test(priority = 6, alwaysRun = true)
+	public void createVendor() throws InterruptedException {
+
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		wait.until(ExpectedConditions.elementToBeClickable((PurchaseOrderScreenButton)));
+		driver.findElement(PurchaseOrderScreenButton).click();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((vendorList)));
+		driver.findElement(vendorList).click();
+		Thread.sleep(5000);
+		wait.until(ExpectedConditions.elementToBeClickable((createVendor)));
+        driver.findElement(createVendor).click();
+		Thread.sleep(5000);
+		wait.until(ExpectedConditions.elementToBeClickable((companyNickname)));
+		String uuid = UUID.randomUUID().toString();
+		driver.findElement(companyNickname).sendKeys(uuid);
+		driver.findElement(companyName).sendKeys(uuid);
+		driver.findElement(addressName).sendKeys("addressName");
+		driver.findElement(addressLine1).sendKeys("addressline1");
+		driver.findElement(addressLine2).sendKeys("addressLine2");
+		driver.findElement(postalCode).sendKeys("postalCode");
+		driver.findElement(city).sendKeys("City");
+     	Thread.sleep(2000);
+     	driver.findElement(saveVendor).click();
+		Thread.sleep(5000);
+
+	}
+	@Test(priority = 7, alwaysRun = true)
+	public void CreatePurchaseOrder1() throws InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver, 40);
+		String uuid = UUID.randomUUID().toString();
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.elementToBeClickable((PurchaseOrderScreenButton)));
+		driver.findElement(PurchaseOrderScreenButton).click();
+		wait.until(ExpectedConditions.elementToBeClickable((createPurchaseOrderButton)));
+        driver.findElement(createPurchaseOrderButton).click();
+	    Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((createProductButton)));
+		driver.findElement(createProductButton).click();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((sku)));
+        driver.findElement(By.name("sku")).sendKeys("sku" + uuid);
+        driver.findElement(productName).sendKeys(uuid);
+		driver.findElement(packType).click();
+		wait.until(ExpectedConditions.elementToBeClickable((packTypeArea)));
+		driver.findElement(packTypeArea).sendKeys(uuid);
+		wait.until(ExpectedConditions.elementToBeClickable((createPackType)));
+		driver.findElement(createPackType).click();
+		driver.findElement(initialQuantity).findElement(By.className("k-input")).sendKeys("10");
+		wait.until(ExpectedConditions.elementToBeClickable((addAnImage)));
+		driver.findElement(addAnImage).click();
+		Thread.sleep(1000);
+		wait.until(ExpectedConditions.elementToBeClickable((productImage)));
+		driver.findElement(productImage).sendKeys("https://d163axztg8am2h.cloudfront.net/static/img/25/67/ca511d852e4dc7a82ef7011da33d.jpg");
+		driver.findElement(productImageAddButton).click();
+		Thread.sleep(1000);
+		driver.findElement(descriptionArea).click();
+		Thread.sleep(1000);
+		driver.findElement(EditdesriptArea).sendKeys("This is a description of the test case.");
+		wait.until(ExpectedConditions.elementToBeClickable((addSalesPriceButton)));
+		driver.findElement(addSalesPriceButton).click();
+		driver.findElement(salesPriceArea).findElement(By.className("k-input")).sendKeys("10");
+		wait.until(ExpectedConditions.elementToBeClickable((addPurchaseButton)));
+		driver.findElement(addPurchaseButton).click();
+		driver.findElement(purchasePriceArea).findElement(By.className("k-input")).sendKeys("10");
+		wait.until(ExpectedConditions.elementToBeClickable((addTaxRateButton)));
+		driver.findElement(addTaxRateButton).click();
+		driver.findElement(taxRateArea).findElement(By.className("k-input")).sendKeys("10");
+		driver.findElement(addUPCButton).click();	
+		driver.findElement(uPCArea).sendKeys(uuid);
+		wait.until(ExpectedConditions.elementToBeClickable((AddProductType)));
+		driver.findElement(AddProductType).click();
+		Thread.sleep(1000);
+		driver.findElement(ProductTypeArea).click();
+		Thread.sleep(1000);	
+		driver.findElement(ProductTypeArea2).sendKeys(uuid);
+		driver.findElement(productSaveButton).click();
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.elementToBeClickable((clickAddVendorInformation)));
+		driver.findElement(clickAddVendorInformation).click();
+		Thread.sleep(4000);
+		wait.until(ExpectedConditions.elementToBeClickable((addANewVendorButton)));
+		driver.findElement(addANewVendorButton).click();
+		Thread.sleep(4000);
+		wait.until(ExpectedConditions.elementToBeClickable((companyNickname)));
+		driver.findElement(companyNickname).sendKeys(uuid);
+		driver.findElement(companyName).sendKeys(uuid);
+		driver.findElement(addressName).sendKeys("addressName");
+		driver.findElement(addressLine1).sendKeys("addressline1");
+		driver.findElement(addressLine2).sendKeys("addressLine2");
+		driver.findElement(postalCode).sendKeys("postalCode");
+		driver.findElement(city).sendKeys("City");
+     	Thread.sleep(2000);
+     	driver.findElement(saveVendor).click();
+		Thread.sleep(5000);
+		wait.until(ExpectedConditions.elementToBeClickable((addOrderDetails)));
+		driver.findElement(addOrderDetails).click();
+		driver.findElement(poOrderCode).sendKeys(uuid);
+		Thread.sleep(1000);
+		driver.findElement(orderTypeSection).click();
+		Thread.sleep(1000);
+		driver.findElement(orderTypeArea).sendKeys(uuid);
+		Thread.sleep(1000);
+		driver.findElement(orderTypeAdd).click();
+		Thread.sleep(1000);
+		driver.findElement(confirmPurchaseOrder).click();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((confirmandPlaceOrder)));
+		driver.findElement(confirmandPlaceOrder).click();
+        Thread.sleep(6000);
+
+	}
+
+	@Test(priority = 8, alwaysRun = true)
+	public void editPurchaseOrder() throws InterruptedException {
+
+		String uuid = UUID.randomUUID().toString();
+		WebDriverWait wait = new WebDriverWait(driver, 40);
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.elementToBeClickable((PurchaseOrderScreenButton)));
+		driver.findElement(PurchaseOrderScreenButton).click();
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.elementToBeClickable((By.cssSelector("tr[role='row'] > td:nth-of-type(8)"))));
+		WebElement firstPO = driver.findElement(By.cssSelector("tr[role='row'] > td:nth-of-type(8)"));
+		Thread.sleep(4000);
+		firstPO.click();
+		Thread.sleep(4000);
+		driver.findElement(poEditBTN).click();
+		Thread.sleep(4000);
+		wait.until(ExpectedConditions.elementToBeClickable((quantityElement)));
+		driver.findElement(quantityElement).clear();
+		driver.findElement(quantityElement).sendKeys("10");
+		Thread.sleep(2000);
+		driver.findElement(pricePerItemElement).clear();
+		driver.findElement(pricePerItemElement).sendKeys("10");
+        Thread.sleep(4000);
+		wait.until(ExpectedConditions.elementToBeClickable((showDetails2)));
+		driver.findElement(showDetails2).click();
+		Thread.sleep(2000);
+		driver.findElement(poCode).clear();
+		driver.findElement(poCode).sendKeys("NewPurchaseOrder01");
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((saveApplyChanges)));
+		driver.findElement(saveApplyChanges).click();
+		Thread.sleep(2000);
+
+	}
+	
+	
+	// cancel purchase order
+
+		@Test(priority = 9, alwaysRun = true)
+		public void DeletePurchaseOrder() throws InterruptedException {
+
+	        WebDriverWait wait = new WebDriverWait(driver, 40);
+			Thread.sleep(3000);
+			wait.until(ExpectedConditions.elementToBeClickable((PurchaseOrderScreenButton)));
+			driver.findElement(PurchaseOrderScreenButton).click();
+			wait.until(ExpectedConditions.elementToBeClickable((By.cssSelector("tr[role='row'] > td:nth-of-type(8)"))));
+			WebElement firstPO = driver.findElement(By.cssSelector("tr[role='row'] > td:nth-of-type(8)"));
+			firstPO.click();
+			Thread.sleep(5000);
+			wait.until(ExpectedConditions.elementToBeClickable((poDeleteBTN)));
+		    driver.findElement(poDeleteBTN).click();
+			Thread.sleep(2000);
+		}
+	
+	
+	
+		@Test(priority = 10, alwaysRun = true)
+		public void CreatePurchaseOrder2() throws InterruptedException {
+			WebDriverWait wait = new WebDriverWait(driver, 40);
+			String uuid = UUID.randomUUID().toString();
+			Thread.sleep(3000);
+			wait.until(ExpectedConditions.elementToBeClickable((PurchaseOrderScreenButton)));
+			driver.findElement(PurchaseOrderScreenButton).click();
+			wait.until(ExpectedConditions.elementToBeClickable((createPurchaseOrderButton)));
+	        driver.findElement(createPurchaseOrderButton).click();
+		    Thread.sleep(2000);
+			wait.until(ExpectedConditions.elementToBeClickable((createProductButton)));
+			driver.findElement(createProductButton).click();
+			Thread.sleep(2000);
+			wait.until(ExpectedConditions.elementToBeClickable((sku)));
+	        driver.findElement(By.name("sku")).sendKeys("sku" + uuid);
+	        driver.findElement(productName).sendKeys(uuid);
+			driver.findElement(packType).click();
+			wait.until(ExpectedConditions.elementToBeClickable((packTypeArea)));
+			driver.findElement(packTypeArea).sendKeys(uuid);
+			wait.until(ExpectedConditions.elementToBeClickable((createPackType)));
+			driver.findElement(createPackType).click();
+			driver.findElement(initialQuantity).findElement(By.className("k-input")).sendKeys("10");
+			wait.until(ExpectedConditions.elementToBeClickable((addAnImage)));
+			driver.findElement(addAnImage).click();
+			Thread.sleep(1000);
+			wait.until(ExpectedConditions.elementToBeClickable((productImage)));
+			driver.findElement(productImage).sendKeys("https://d163axztg8am2h.cloudfront.net/static/img/25/67/ca511d852e4dc7a82ef7011da33d.jpg");
+			driver.findElement(productImageAddButton).click();
+			Thread.sleep(1000);
+			driver.findElement(descriptionArea).click();
+			Thread.sleep(1000);
+			driver.findElement(EditdesriptArea).sendKeys("This is a description of the test case.");
+			wait.until(ExpectedConditions.elementToBeClickable((addSalesPriceButton)));
+			driver.findElement(addSalesPriceButton).click();
+			driver.findElement(salesPriceArea).findElement(By.className("k-input")).sendKeys("10");
+			wait.until(ExpectedConditions.elementToBeClickable((addPurchaseButton)));
+			driver.findElement(addPurchaseButton).click();
+			driver.findElement(purchasePriceArea).findElement(By.className("k-input")).sendKeys("10");
+			wait.until(ExpectedConditions.elementToBeClickable((addTaxRateButton)));
+			driver.findElement(addTaxRateButton).click();
+			driver.findElement(taxRateArea).findElement(By.className("k-input")).sendKeys("10");
+			driver.findElement(addUPCButton).click();	
+			driver.findElement(uPCArea).sendKeys(uuid);
+			wait.until(ExpectedConditions.elementToBeClickable((AddProductType)));
+			driver.findElement(AddProductType).click();
+			Thread.sleep(1000);
+			driver.findElement(ProductTypeArea).click();
+			Thread.sleep(1000);	
+			driver.findElement(ProductTypeArea2).sendKeys(uuid);
+			driver.findElement(productSaveButton).click();
+			Thread.sleep(3000);
+			wait.until(ExpectedConditions.elementToBeClickable((clickAddVendorInformation)));
+			driver.findElement(clickAddVendorInformation).click();
+			Thread.sleep(4000);
+			wait.until(ExpectedConditions.elementToBeClickable((addANewVendorButton)));
+			driver.findElement(addANewVendorButton).click();
+			Thread.sleep(4000);
+			wait.until(ExpectedConditions.elementToBeClickable((companyNickname)));
+			driver.findElement(companyNickname).sendKeys(uuid);
+			driver.findElement(companyName).sendKeys(uuid);
+			driver.findElement(addressName).sendKeys("addressName");
+			driver.findElement(addressLine1).sendKeys("addressline1");
+			driver.findElement(addressLine2).sendKeys("addressLine2");
+			driver.findElement(postalCode).sendKeys("postalCode");
+			driver.findElement(city).sendKeys("City");
+	     	Thread.sleep(2000);
+	     	driver.findElement(saveVendor).click();
+			Thread.sleep(5000);
+			wait.until(ExpectedConditions.elementToBeClickable((addOrderDetails)));
+			driver.findElement(addOrderDetails).click();
+			driver.findElement(poOrderCode).sendKeys(uuid);
+			Thread.sleep(1000);
+			driver.findElement(orderTypeSection).click();
+			Thread.sleep(1000);
+			driver.findElement(orderTypeArea).sendKeys(uuid);
+			Thread.sleep(1000);
+			driver.findElement(orderTypeAdd).click();
+			Thread.sleep(1000);
+			driver.findElement(confirmPurchaseOrder).click();
+			Thread.sleep(2000);
+			wait.until(ExpectedConditions.elementToBeClickable((confirmandPlaceOrder)));
+			driver.findElement(confirmandPlaceOrder).click();
+	        Thread.sleep(6000);
+
+		}
+
+
+		@Test(priority = 11, alwaysRun = true)
+		public void CancelPurchaseOrder() throws InterruptedException {
+
+			WebDriverWait wait = new WebDriverWait(driver, 40);
+			Thread.sleep(3000);
+			wait.until(ExpectedConditions.elementToBeClickable((PurchaseOrderScreenButton)));
+			driver.findElement(PurchaseOrderScreenButton).click();
+			Thread.sleep(3000);
+			wait.until(ExpectedConditions.elementToBeClickable((By.xpath("//td[7]"))));
+			WebElement firstPO = driver.findElement(By.xpath("//td[7])"));
+			firstPO.click();
+			Thread.sleep(5000);
+			wait.until(ExpectedConditions.elementToBeClickable(poCancelBTN));
+			driver.findElement(poCancelBTN).click();
+			Thread.sleep(2000);
+
+		}
+	
+	
+	
+	
+	
+		@Test(priority = 12, alwaysRun = true)
+		public void CreatePurchaseOrder3() throws InterruptedException {
+			WebDriverWait wait = new WebDriverWait(driver, 40);
+			String uuid = UUID.randomUUID().toString();
+			Thread.sleep(3000);
+			wait.until(ExpectedConditions.elementToBeClickable((PurchaseOrderScreenButton)));
+			driver.findElement(PurchaseOrderScreenButton).click();
+			wait.until(ExpectedConditions.elementToBeClickable((createPurchaseOrderButton)));
+	        driver.findElement(createPurchaseOrderButton).click();
+		    Thread.sleep(2000);
+			wait.until(ExpectedConditions.elementToBeClickable((createProductButton)));
+			driver.findElement(createProductButton).click();
+			Thread.sleep(2000);
+			wait.until(ExpectedConditions.elementToBeClickable((sku)));
+	        driver.findElement(By.name("sku")).sendKeys("sku" + uuid);
+	        driver.findElement(productName).sendKeys(uuid);
+			driver.findElement(packType).click();
+			wait.until(ExpectedConditions.elementToBeClickable((packTypeArea)));
+			driver.findElement(packTypeArea).sendKeys(uuid);
+			wait.until(ExpectedConditions.elementToBeClickable((createPackType)));
+			driver.findElement(createPackType).click();
+			driver.findElement(initialQuantity).findElement(By.className("k-input")).sendKeys("10");
+			wait.until(ExpectedConditions.elementToBeClickable((addAnImage)));
+			driver.findElement(addAnImage).click();
+			Thread.sleep(1000);
+			wait.until(ExpectedConditions.elementToBeClickable((productImage)));
+			driver.findElement(productImage).sendKeys("https://d163axztg8am2h.cloudfront.net/static/img/25/67/ca511d852e4dc7a82ef7011da33d.jpg");
+			driver.findElement(productImageAddButton).click();
+			Thread.sleep(1000);
+			driver.findElement(descriptionArea).click();
+			Thread.sleep(1000);
+			driver.findElement(EditdesriptArea).sendKeys("This is a description of the test case.");
+			wait.until(ExpectedConditions.elementToBeClickable((addSalesPriceButton)));
+			driver.findElement(addSalesPriceButton).click();
+			driver.findElement(salesPriceArea).findElement(By.className("k-input")).sendKeys("10");
+			wait.until(ExpectedConditions.elementToBeClickable((addPurchaseButton)));
+			driver.findElement(addPurchaseButton).click();
+			driver.findElement(purchasePriceArea).findElement(By.className("k-input")).sendKeys("10");
+			wait.until(ExpectedConditions.elementToBeClickable((addTaxRateButton)));
+			driver.findElement(addTaxRateButton).click();
+			driver.findElement(taxRateArea).findElement(By.className("k-input")).sendKeys("10");
+			driver.findElement(addUPCButton).click();	
+			driver.findElement(uPCArea).sendKeys(uuid);
+			wait.until(ExpectedConditions.elementToBeClickable((AddProductType)));
+			driver.findElement(AddProductType).click();
+			Thread.sleep(1000);
+			driver.findElement(ProductTypeArea).click();
+			Thread.sleep(1000);	
+			driver.findElement(ProductTypeArea2).sendKeys(uuid);
+			driver.findElement(productSaveButton).click();
+			Thread.sleep(3000);
+			wait.until(ExpectedConditions.elementToBeClickable((clickAddVendorInformation)));
+			driver.findElement(clickAddVendorInformation).click();
+			Thread.sleep(4000);
+			wait.until(ExpectedConditions.elementToBeClickable((addANewVendorButton)));
+			driver.findElement(addANewVendorButton).click();
+			Thread.sleep(4000);
+			wait.until(ExpectedConditions.elementToBeClickable((companyNickname)));
+			driver.findElement(companyNickname).sendKeys(uuid);
+			driver.findElement(companyName).sendKeys(uuid);
+			driver.findElement(addressName).sendKeys("addressName");
+			driver.findElement(addressLine1).sendKeys("addressline1");
+			driver.findElement(addressLine2).sendKeys("addressLine2");
+			driver.findElement(postalCode).sendKeys("postalCode");
+			driver.findElement(city).sendKeys("City");
+	     	Thread.sleep(2000);
+	     	driver.findElement(saveVendor).click();
+			Thread.sleep(5000);
+			wait.until(ExpectedConditions.elementToBeClickable((addOrderDetails)));
+			driver.findElement(addOrderDetails).click();
+			driver.findElement(poOrderCode).sendKeys(uuid);
+			Thread.sleep(1000);
+			driver.findElement(orderTypeSection).click();
+			Thread.sleep(1000);
+			driver.findElement(orderTypeArea).sendKeys(uuid);
+			Thread.sleep(1000);
+			driver.findElement(orderTypeAdd).click();
+			Thread.sleep(1000);
+			driver.findElement(confirmPurchaseOrder).click();
+			Thread.sleep(2000);
+			wait.until(ExpectedConditions.elementToBeClickable((confirmandPlaceOrder)));
+			driver.findElement(confirmandPlaceOrder).click();
+	        Thread.sleep(6000);
+
+		}
+
+
+	@Test(priority = 13, alwaysRun = true)
+	public void ReceiptPurchaseOrder() throws InterruptedException {
+
+		WebDriverWait wait = new WebDriverWait(driver, 40);
+		String uuid = UUID.randomUUID().toString();
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.elementToBeClickable((PurchaseOrderScreenButton)));
+		driver.findElement(PurchaseOrderScreenButton).click();
+		wait.until(ExpectedConditions.elementToBeClickable((By.cssSelector("tr[role='row'] > td:nth-of-type(8)"))));
+		WebElement firstPO = driver.findElement(By.cssSelector("tr[role='row'] > td:nth-of-type(8)"));
+		firstPO.click();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((poReceiptBTN)));
+		driver.findElement(poReceiptBTN).click();
+		Thread.sleep(2000);
+
+	}
+
+	
+	}
+
