@@ -1,0 +1,275 @@
+package jenkins;
+
+import java.util.UUID;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
+
+public class Inventory extends BaseforJenkins {
+
+	public static By InventoryScreenButton = By.id("MainMenuInventoryLink");
+	public static By addInventoryButton = By.xpath("//button[contains(.,'Add Inventory')]");
+	public static By addInventoryCombobox = By.xpath("//dynamic-platform-form-control[3]/div/dynamic-platform-dropdownlist/kendo-dropdownlist/span/span/span");
+	public static By addInventoryField = By.xpath("//div/span/input");
+	public static By addedProduct = By.xpath("//kendo-list/div/ul/li[1]");
+	public static By quantityField = By.xpath("//kendo-numerictextbox[@id='quantity']/span/input");
+	public static By saveButton = By.xpath("//button[contains(.,'SAVE')]");
+	public static By FirstProduct = By.xpath("//td[8]");
+	public static By addInventoryButtonHover = By.xpath("//platform-root//section//platform-placeholder[@name='system']/platform-content[@placeholder='system']//platform-grid/kendo-grid/div[@role='grid']/table/tbody/tr[6]/td[6]//button[@class='body-fixed inbound']");
+	public static By inventoryQuantity = By.xpath("//kendo-numerictextbox[@id='quantity']/span/input");
+	public static By addInventoryNoteButton = By.xpath("//span[contains(.,'Add a Note')]");
+	public static By addInventoryNote = By.id("note");
+	public static By adjustInventoryButton = By.xpath("//button[contains(.,'Adjust')]");
+	public static By RemoveInventoryButton = By.xpath("//button[contains(.,'Remove Inventory')]");
+	public static By RemoveInventoryCancelButton = By.xpath("//button[contains(.,'CANCEL')]");
+	public static By productCancelYesButton = By.xpath("//button[contains(.,'YES')]");
+	public static By RemoveInventoryButtonHover = By.xpath("//platform-root//section//platform-placeholder[@name='system']/platform-content[@placeholder='system']//platform-grid/kendo-grid/div[@role='grid']/table/tbody/tr[@role='row']/td[10]/div/button[3]");
+	
+
+	
+	@Test(priority = 14, alwaysRun = true)
+
+	public void addInventoryFromUpperBar() throws InterruptedException {
+
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		Thread.sleep(5000);
+		wait.until(ExpectedConditions.elementToBeClickable((InventoryScreenButton)));
+		driver.findElement(InventoryScreenButton).click();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((addInventoryButton)));
+		driver.findElement(addInventoryButton).click();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((addInventoryCombobox)));
+		driver.findElement(addInventoryCombobox).click();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((addInventoryField)));
+		driver.findElement(addInventoryField).click();
+		Thread.sleep(1000);
+		String uuid = UUID.randomUUID().toString();
+		driver.findElement(addInventoryField).sendKeys("pro");
+		wait.until(ExpectedConditions.elementToBeClickable((addedProduct)));
+		driver.findElement(addedProduct).click();
+		driver.findElement(quantityField).sendKeys("1000");
+		Thread.sleep(2000);
+		driver.findElement(saveButton).click();
+		Thread.sleep(3000);
+
+	}
+	
+	
+	
+	@Test(priority = 15, alwaysRun = true)
+
+	public void addInventoryHover() throws InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		Thread.sleep(4000);
+		wait.until(ExpectedConditions.elementToBeClickable((InventoryScreenButton)));
+		driver.findElement(InventoryScreenButton).click();
+		Thread.sleep(3000);		
+		wait.until(ExpectedConditions.elementToBeClickable((FirstProduct)));
+		Actions builder = new Actions(driver);
+		WebElement element = driver.findElement(FirstProduct);
+		builder.moveToElement(element).build().perform();
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.elementToBeClickable((addInventoryButtonHover)));	
+	    driver.findElement(addInventoryButtonHover).click();
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions
+				.elementToBeClickable((inventoryQuantity)));
+		driver.findElement(inventoryQuantity).sendKeys("5");
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((addInventoryNoteButton)));
+		driver.findElement(addInventoryNoteButton).click();
+		driver.findElement(addInventoryNote).sendKeys("This is a note for this inventory.");
+		Thread.sleep(1000);
+		wait.until(ExpectedConditions.elementToBeClickable((saveButton)));
+		Thread.sleep(2000);
+		driver.findElement(saveButton).click();
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.elementToBeClickable((FirstProduct)));
+	}
+	
+	
+	@Test(priority = 16, alwaysRun = true)
+	public void adjustInventoryPositively() throws InterruptedException {
+
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		Thread.sleep(4000);
+		wait.until(ExpectedConditions.elementToBeClickable((InventoryScreenButton)));
+		driver.findElement(InventoryScreenButton).click();
+		Thread.sleep(5000);
+		wait.until(ExpectedConditions.elementToBeClickable((FirstProduct)));
+		Actions builder = new Actions(driver);
+		WebElement element = driver.findElement(FirstProduct);
+		builder.moveToElement(element).build().perform();
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.elementToBeClickable((By.xpath(
+				"//platform-root//section//platform-placeholder[@name='system']/platform-content[@placeholder='system']//platform-grid/kendo-grid/div[@role='grid']/table/tbody/tr[@role='row']/td[10]/div/button[1]"))));
+		wait.until(ExpectedConditions.elementToBeClickable((adjustInventoryButton)));
+		driver.findElement(adjustInventoryButton).click();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((addInventoryCombobox)));
+		driver.findElement(addInventoryCombobox).click();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((addInventoryField)));
+		driver.findElement(addInventoryField).click();
+		Thread.sleep(1000);
+		driver.findElement(quantityField).sendKeys("1000");
+		Thread.sleep(2000);
+		driver.findElement(saveButton).click();
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.elementToBeClickable((FirstProduct)));
+
+	}
+
+	@Test(priority = 17, alwaysRun = true)
+	public void adjustInventoryNegatively() throws InterruptedException {
+
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		Thread.sleep(4000);
+		wait.until(ExpectedConditions.elementToBeClickable((InventoryScreenButton)));
+		driver.findElement(InventoryScreenButton).click();
+		Thread.sleep(5000);
+		wait.until(ExpectedConditions.elementToBeClickable((FirstProduct)));
+		Actions builder = new Actions(driver);
+		WebElement element = driver.findElement(FirstProduct);
+		builder.moveToElement(element).build().perform();
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.elementToBeClickable((By.xpath(
+				"//platform-root//section//platform-placeholder[@name='system']/platform-content[@placeholder='system']//platform-grid/kendo-grid/div[@role='grid']/table/tbody/tr[@role='row']/td[10]/div/button[1]"))));
+		wait.until(ExpectedConditions.elementToBeClickable((adjustInventoryButton)));
+		driver.findElement(adjustInventoryButton).click();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((addInventoryCombobox)));
+		driver.findElement(addInventoryCombobox).click();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((addInventoryField)));
+		driver.findElement(addInventoryField).click();
+		Thread.sleep(1000);
+		driver.findElement(quantityField).sendKeys("50");
+		Thread.sleep(2000);
+		driver.findElement(saveButton).click();
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.elementToBeClickable((FirstProduct)));
+
+	}
+
+	
+	@Test(priority = 18, alwaysRun = true)
+
+	public void RemoveInventoryFromUpperBar() throws InterruptedException {
+
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		Thread.sleep(5000);
+		wait.until(ExpectedConditions.elementToBeClickable((InventoryScreenButton)));
+		driver.findElement(InventoryScreenButton).click();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((RemoveInventoryButton)));
+		driver.findElement(RemoveInventoryButton).click();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((addInventoryCombobox)));
+		driver.findElement(addInventoryCombobox).click();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((addInventoryField)));
+		driver.findElement(addInventoryField).click();
+		Thread.sleep(1000);
+		String uuid = UUID.randomUUID().toString();
+		driver.findElement(addInventoryField).sendKeys("pro");
+		wait.until(ExpectedConditions.elementToBeClickable((addedProduct)));
+		driver.findElement(addedProduct).click();
+		driver.findElement(quantityField).sendKeys("10");
+		Thread.sleep(2000);
+		driver.findElement(saveButton).click();
+		Thread.sleep(3000);
+
+	}
+	
+	
+	@Test(priority = 19, alwaysRun = true)
+
+	public void RemoveMoreInventoryFromUpperBar() throws InterruptedException {
+
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		Thread.sleep(5000);
+		wait.until(ExpectedConditions.elementToBeClickable((InventoryScreenButton)));
+		driver.findElement(InventoryScreenButton).click();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((RemoveInventoryButton)));
+		driver.findElement(RemoveInventoryButton).click();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((addInventoryCombobox)));
+		driver.findElement(addInventoryCombobox).click();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((addInventoryField)));
+		driver.findElement(addInventoryField).click();
+		Thread.sleep(1000);
+		String uuid = UUID.randomUUID().toString();
+		driver.findElement(addInventoryField).sendKeys("pro");
+		wait.until(ExpectedConditions.elementToBeClickable((addedProduct)));
+		driver.findElement(addedProduct).click();
+		driver.findElement(quantityField).sendKeys("10000");
+		Thread.sleep(2000);
+		driver.findElement(saveButton).click();
+		Thread.sleep(3000);
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.elementToBeClickable((RemoveInventoryCancelButton)));
+		driver.findElement(RemoveInventoryCancelButton).click();
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.elementToBeClickable((productCancelYesButton)));
+		driver.findElement(productCancelYesButton).click();
+
+	}
+	
+	
+	
+	
+	@Test(priority = 20, alwaysRun = true)
+
+	public void RemoveInventoryHover() throws InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		Thread.sleep(4000);
+		wait.until(ExpectedConditions.elementToBeClickable((InventoryScreenButton)));
+		driver.findElement(InventoryScreenButton).click();
+		Thread.sleep(3000);		
+		wait.until(ExpectedConditions.elementToBeClickable((FirstProduct)));
+		Actions builder = new Actions(driver);
+		WebElement element = driver.findElement(FirstProduct);
+		builder.moveToElement(element).build().perform();
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.elementToBeClickable((RemoveInventoryButtonHover)));	
+	    driver.findElement(RemoveInventoryButtonHover).click();
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions
+				.elementToBeClickable((inventoryQuantity)));
+		driver.findElement(inventoryQuantity).sendKeys("5");
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((addInventoryNoteButton)));
+		driver.findElement(addInventoryNoteButton).click();
+		driver.findElement(addInventoryNote).sendKeys("This is a note for this inventory.");
+		Thread.sleep(1000);
+		wait.until(ExpectedConditions.elementToBeClickable((saveButton)));
+		Thread.sleep(2000);
+		driver.findElement(saveButton).click();
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.elementToBeClickable((FirstProduct)));
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
