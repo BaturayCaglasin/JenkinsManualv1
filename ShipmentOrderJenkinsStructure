@@ -1,0 +1,283 @@
+package jenkins;
+
+import java.util.UUID;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
+
+public class ShipmentOrder extends BaseforJenkins {
+
+	public static By ShipmentScreenButton = By.id("MainMenuShipmentOrderLink");
+	public static By createShipmentOrderButton = By.xpath("//span[contains(.,'Create Shipment Order')]");
+	public static By searchProductBar = By.xpath("//kendo-multiselect[@id='productOptions']//kendo-searchbar[@class='k-searchbar']/input[@role='listbox']");
+	public static By firstProductForSo = By.xpath("//platform-root/kendo-popup[@class='k-animation-container k-animation-container-shown']//kendo-list[@class='ng-star-inserted']//ul[@role='listbox']/li[@role='option']");
+	public static By clickAddButton1 = By.xpath("//button[contains(.,'Add')]");
+	public static By clickProceedtoCustomer = By.xpath("//button[contains(.,'Add Shipping Information')]");
+	public static By sOAddressLine1 = By.name("addressLine1");
+	public static By sOAddressLine2 = By.name("addressLine2");
+	public static By sOPostalCode = By.name("postalCode");
+	public static By sOCity = By.name("city");
+	public static By sOCustomerFNBTN = By.xpath("//span[contains(.,'Customer First Name')]");
+	public static By sOCustomerFN = By.name("customerFirstName");
+	public static By sOCustomerLNBTN = By.xpath("//span[contains(.,'Customer Last Name')]");
+	public static By sOCustomerLN = By.name("customerLastName");
+	public static By sOCustomerMBTN = By.xpath("//span[contains(.,'Customer Email')]");
+	public static By sOCustomerM = By.name("customerEmail");
+	public static By clickOrderDetails = By.xpath("//button[contains(.,'Add Order Details')]");
+	public static By soOrderCode = By.name("code");
+	public static By orderTypeSection = By.xpath("//kendo-dropdownlist[@id='shipmentOrderTypeName']//span[@class='k-input']");
+	public static By orderTypeArea = By.cssSelector(".k-list-filter [tabindex]");
+	public static By orderTypeAdd = By.xpath("//button[contains(.,'Create New Shipment Order Type')]");
+	public static By proceedToApprove = By.xpath("//button[contains(.,'Confirm Shipment Order')]");
+	public static By approveAndPlaceOrder = By.xpath("//button[contains(.,'Confirm and Place Order')]");
+	public static By firstShipmentOrder = By.xpath("//td[4]");
+	public static By editShipmentOrder = By.xpath("//span[contains(.,'Edit')]");
+	public static By editSearchProduct = By.cssSelector(".k-searchbar .k-input");
+	public static By firstProductForSoforEdit = By.cssSelector("//kendo-list/div/ul/li");
+	public static By sOEditAdd = By.xpath("//button[contains(.,'Add')]");
+	public static By sOfirstQuantityDelete = By.xpath("//div[@id='collapseOne']//platform-shipment-order-product-form-view//platform-grid/kendo-grid/div[@role='grid']//tbody/tr[@role='row']/td[4]//kendo-numerictextbox//input[@role='spinbutton']");
+	public static By sOShowDetails = By.cssSelector("#headingTwo .btn");
+	public static By sOEditSaveAndApplyChangesElement = By.xpath("//button[contains(.,'Save and Apply Changes')]");
+	public static By deleteShipmentOrder = By.xpath("//span[contains(.,'Delete')]");
+	public static By clickDBTN = By.xpath("//button[contains(.,'YES')]");
+	public static By shipShipmentOrder = By.xpath("//button[contains(.,'Ship Order')]");
+
+	
+	@Test(priority = 21, alwaysRun = true)
+
+	public void CreateShipmentOrder() throws InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver, 20);
+		String uuid = UUID.randomUUID().toString();
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.elementToBeClickable((ShipmentScreenButton)));
+		driver.findElement(ShipmentScreenButton).click();
+		wait.until(ExpectedConditions.elementToBeClickable((createShipmentOrderButton)));
+		driver.findElement(createShipmentOrderButton).click();
+		wait.until(ExpectedConditions.elementToBeClickable((searchProductBar)));
+		driver.findElement(searchProductBar).sendKeys("pro");
+		Thread.sleep(1000);
+		driver.findElement(firstProductForSo).click();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((clickAddButton1)));
+		driver.findElement(clickAddButton1).click();
+		Thread.sleep(2000);
+		driver.findElement(clickProceedtoCustomer).click();
+		wait.until(ExpectedConditions.elementToBeClickable((sOAddressLine1)));
+		driver.findElement(By.name("addressLine1")).sendKeys("224 Wallace Ave #200");
+		driver.findElement(By.name("addressLine2")).sendKeys("Redwood City, ON M6H 1V7, California");
+		driver.findElement(By.name("postalCode")).sendKeys("90017");
+		driver.findElement(By.name("city")).sendKeys("California");
+		Thread.sleep(1000);
+		JavascriptExecutor jsx = (JavascriptExecutor) driver;
+		jsx.executeScript("window.scrollBy(0,450)", "");
+		driver.findElement(sOCustomerFNBTN).click();
+		driver.findElement(sOCustomerFN).sendKeys("Batu");
+		driver.findElement(sOCustomerLNBTN).click();
+		driver.findElement(sOCustomerLN).sendKeys("Caglasin");
+		jsx.executeScript("window.scrollBy(0,450)", "");
+		driver.findElement(sOCustomerMBTN).click();
+		jsx.executeScript("window.scrollBy(0,450)", "");
+		driver.findElement(sOCustomerM).sendKeys("baturaycaglasintest@gmail.com");
+		jsx.executeScript("window.scrollBy(0,-450)", "");
+		Thread.sleep(1000);
+		driver.findElement(clickOrderDetails).click();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((soOrderCode)));
+		driver.findElement(soOrderCode).sendKeys(uuid);
+		driver.findElement(orderTypeSection).click();
+		Thread.sleep(1000);
+		wait.until(ExpectedConditions.elementToBeClickable((orderTypeArea)));
+		driver.findElement(orderTypeArea).sendKeys(uuid);
+		Thread.sleep(1000);
+		wait.until(ExpectedConditions.elementToBeClickable((orderTypeAdd)));
+		driver.findElement(orderTypeAdd).click();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((proceedToApprove)));
+		driver.findElement(proceedToApprove).click();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((approveAndPlaceOrder)));
+		driver.findElement(approveAndPlaceOrder).click();
+		Thread.sleep(5000);
+		wait.until(ExpectedConditions.elementToBeClickable((ShipmentScreenButton)));
+		driver.findElement(ShipmentScreenButton).click();
+		Thread.sleep(5000);
+
+	}
+	
+	@Test(priority = 22, alwaysRun = true)
+	public void EditShipmentOrder() throws InterruptedException {
+		
+		WebDriverWait wait = new WebDriverWait(driver, 20);
+		String uuid = UUID.randomUUID().toString();
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.elementToBeClickable((ShipmentScreenButton)));
+		driver.findElement(ShipmentScreenButton).click();
+		Thread.sleep(4000);
+		wait.until(ExpectedConditions.elementToBeClickable((firstShipmentOrder)));
+		driver.findElement(firstShipmentOrder).click();
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.elementToBeClickable((editShipmentOrder)));
+		driver.findElement(editShipmentOrder).click();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((editSearchProduct)));
+		 driver.findElement(editSearchProduct).sendKeys("sku");
+		Thread.sleep(2000);
+		driver.findElement(firstProductForSoforEdit).click();
+		Thread.sleep(4000);
+		wait.until(ExpectedConditions.elementToBeClickable((sOEditAdd)));
+		driver.findElement(sOEditAdd).click();
+		driver.findElement(sOfirstQuantityDelete).clear();
+		driver.findElement(sOfirstQuantityDelete).sendKeys("5");
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((sOShowDetails)));
+		driver.findElement(sOShowDetails).click();
+		wait.until(ExpectedConditions.elementToBeClickable((sOAddressLine1)));
+		driver.findElement(sOAddressLine1).clear();
+		Thread.sleep(1000);
+		driver.findElement(sOAddressLine1).sendKeys("1201 S Figueroa St, Los Angeles, CA 90015, USA");
+		Thread.sleep(4000);
+		wait.until(ExpectedConditions.elementToBeClickable((sOEditSaveAndApplyChangesElement)));
+		driver.findElement(sOEditSaveAndApplyChangesElement).click();
+	}
+
+	@Test(priority = 23, alwaysRun = true)
+	public void deleteShipmentOrder() throws InterruptedException {
+		
+		WebDriverWait wait = new WebDriverWait(driver, 20);
+		String uuid = UUID.randomUUID().toString();
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.elementToBeClickable((ShipmentScreenButton)));
+		driver.findElement(ShipmentScreenButton).click();
+		Thread.sleep(4000);
+		wait.until(ExpectedConditions.elementToBeClickable((firstShipmentOrder)));
+		driver.findElement(firstShipmentOrder).click();
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.elementToBeClickable((deleteShipmentOrder)));
+		driver.findElement(deleteShipmentOrder).click();
+		Thread.sleep(2000);
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.elementToBeClickable((clickDBTN)));
+		driver.findElement(clickDBTN).click();
+		Thread.sleep(3000);
+	}
+
+	@Test(priority = 24, alwaysRun = true)
+
+	public void CreateShipmentOrderII() throws InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver, 20);
+		String uuid = UUID.randomUUID().toString();
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.elementToBeClickable((ShipmentScreenButton)));
+		driver.findElement(ShipmentScreenButton).click();
+		wait.until(ExpectedConditions.elementToBeClickable((createShipmentOrderButton)));
+		driver.findElement(createShipmentOrderButton).click();
+		wait.until(ExpectedConditions.elementToBeClickable((searchProductBar)));
+		driver.findElement(searchProductBar).sendKeys("pro");
+		Thread.sleep(1000);
+		driver.findElement(firstProductForSo).click();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((clickAddButton1)));
+		driver.findElement(clickAddButton1).click();
+		Thread.sleep(2000);
+		driver.findElement(clickProceedtoCustomer).click();
+		wait.until(ExpectedConditions.elementToBeClickable((sOAddressLine1)));
+		driver.findElement(By.name("addressLine1")).sendKeys("224 Wallace Ave #200");
+		driver.findElement(By.name("addressLine2")).sendKeys("Redwood City, ON M6H 1V7, California");
+		driver.findElement(By.name("postalCode")).sendKeys("90017");
+		driver.findElement(By.name("city")).sendKeys("California");
+		Thread.sleep(1000);
+		JavascriptExecutor jsx = (JavascriptExecutor) driver;
+		jsx.executeScript("window.scrollBy(0,450)", "");
+		driver.findElement(sOCustomerFNBTN).click();
+		driver.findElement(sOCustomerFN).sendKeys("Batu");
+		driver.findElement(sOCustomerLNBTN).click();
+		driver.findElement(sOCustomerLN).sendKeys("Caglasin");
+		jsx.executeScript("window.scrollBy(0,450)", "");
+		driver.findElement(sOCustomerMBTN).click();
+		jsx.executeScript("window.scrollBy(0,450)", "");
+		driver.findElement(sOCustomerM).sendKeys("baturaycaglasintest@gmail.com");
+		jsx.executeScript("window.scrollBy(0,-450)", "");
+		Thread.sleep(1000);
+		driver.findElement(clickOrderDetails).click();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((soOrderCode)));
+		driver.findElement(soOrderCode).sendKeys(uuid);
+		driver.findElement(orderTypeSection).click();
+		Thread.sleep(1000);
+		wait.until(ExpectedConditions.elementToBeClickable((orderTypeArea)));
+		driver.findElement(orderTypeArea).sendKeys(uuid);
+		Thread.sleep(1000);
+		wait.until(ExpectedConditions.elementToBeClickable((orderTypeAdd)));
+		driver.findElement(orderTypeAdd).click();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((proceedToApprove)));
+		driver.findElement(proceedToApprove).click();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable((approveAndPlaceOrder)));
+		driver.findElement(approveAndPlaceOrder).click();
+		Thread.sleep(5000);
+		wait.until(ExpectedConditions.elementToBeClickable((ShipmentScreenButton)));
+		driver.findElement(ShipmentScreenButton).click();
+		Thread.sleep(5000);
+
+	}
+	@Test(priority = 25, alwaysRun = true)
+	public void ShipShipmentOrder() throws InterruptedException {
+		
+		WebDriverWait wait = new WebDriverWait(driver, 20);
+		String uuid = UUID.randomUUID().toString();
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.elementToBeClickable((ShipmentScreenButton)));
+		driver.findElement(ShipmentScreenButton).click();
+		Thread.sleep(4000);
+		wait.until(ExpectedConditions.elementToBeClickable((firstShipmentOrder)));
+		driver.findElement(firstShipmentOrder).click();
+		Thread.sleep(3000);
+		wait.until(ExpectedConditions.elementToBeClickable((shipShipmentOrder)));
+		driver.findElement(shipShipmentOrder).click();
+		Thread.sleep(2000);
+		
+	}
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+	
+	
+	
+	
+	
